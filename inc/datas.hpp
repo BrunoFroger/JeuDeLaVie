@@ -10,6 +10,7 @@
     extern int numPas;
     extern int nbPas;
     extern int delaiAnime;
+    extern int periode;
 
     // parametres
     extern bool noGrille;

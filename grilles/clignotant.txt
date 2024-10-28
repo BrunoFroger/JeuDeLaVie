@@ -1,4 +1,5 @@
 taille=10
+periode=2
      
      
  *** 

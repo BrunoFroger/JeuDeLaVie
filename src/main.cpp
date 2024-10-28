@@ -23,6 +23,7 @@ int delaiAnime=1;
 int numPas=0;
 int nbPas=1;
 long int tmpNbPas;
+int periode=0;
 
 char *getOnOff(bool value){
     if (value){
@@ -39,18 +40,21 @@ int main(int argc, char **argv){
         analyseParametres(argc, argv);
     }
 
+    if (strlen(nomGrille) != 0) afficheGrille(grille);
+
     while (1){
         int fin = 0;
         strcpy(saisie, "");
         printf("Menu\n");
-        printf("1 : charge grille\n");
+        printf("1 : charge grille (actuelle : %s ; periode : %d)\n", nomGrille, periode);
         printf("2 : affiche grille\n");
         printf("3 : evoluer de %d pas (%d)\n", nbPas, numPas);
         printf("4 : switch grille on/off (%s)\n", getOnOff(!noGrille));
         printf("5 : change nombre de pas a chaque iteration (%d)\n", nbPas);
         printf("6 : switch mode animation (%s) pour %d cycles (variable ci-dessus)\n", getOnOff(modeAnime), nbPas);
         printf("7 : delai entre pas animation (%d secondes)\n", delaiAnime);
-        printf("a : aide");
+        printf("a : aide\n");
+        printf("l : liste des grilles disponibles\n");
         printf("q : quitter\n");
         printf("votre choix : ");
         scanf("%s", saisie);
@@ -60,6 +64,7 @@ int main(int argc, char **argv){
                 printf("Nom de la grille a charger : ");
                 scanf("%s", nomGrille);
                 chargeGrille(nomGrille);
+                afficheGrille(grille);
                 break;
             case '2' :  // affiche grille
                 afficheGrille(grille);
@@ -90,6 +95,11 @@ int main(int argc, char **argv){
                 if (tmpNbPas == 0){
                     printf("ERREUR : <%s> n'est pas un nombre valide\n", saisie);
                 } else delaiAnime = (int)tmpNbPas;
+                break;
+            case 'l' :
+            case 'L' :
+                printf("liste des ficheirs disponibles :\n");
+                system("ls grilles/*");
                 break;
             case 'a' :
             case 'A' :
