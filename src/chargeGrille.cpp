@@ -11,7 +11,7 @@ int chargeGrille(char *nomGrille){
     FILE *fic = fopen(nomGrille,"r");
     char ligne[150];
     if (fic == NULL){
-        printf("ERREUR => le fichier <%s> n'existe pas", nomGrille);
+        printf("ERREUR => le fichier <%s> n'existe pas\n", nomGrille);
         return -1;
     } else{
         // printf("chargement de la grille prédéfine %s\n", nomGrille);

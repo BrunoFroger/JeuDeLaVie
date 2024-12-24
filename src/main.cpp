@@ -60,22 +60,37 @@ int main(int argc, char **argv){
         scanf("%s", saisie);
         switch(saisie[0]){
             case '1' :  // charge grille
-                strcpy(nomGrille, "");
+                char tmp[100];
+                strcpy(tmp, "");
                 printf("Nom de la grille a charger : ");
-                scanf("%s", nomGrille);
-                chargeGrille(nomGrille);
-                afficheGrille(grille);
+                scanf("%s", tmp);
+                if (chargeGrille(tmp) == 0){
+                    strcpy(nomGrille, tmp);
+                    afficheGrille(grille);
+                }
                 break;
             case '2' :  // affiche grille
-                afficheGrille(grille);
+                if (strcmp(nomGrille, "") != 0){
+                    afficheGrille(grille);
+                } else {
+                    printf("ERREUR : aucune grille chargée\n");
+                }
                 break;
             case '3' :  // Evolution de nbPas
-                calculEvolution();
-                afficheGrille(grille);
+                if (strcmp(nomGrille, "") != 0){
+                    calculEvolution();
+                    afficheGrille(grille);
+                } else {
+                    printf("ERREUR : aucune grille chargée\n");
+                }
                 break;
             case '4' : // switch on/off de la grille
                 noGrille=!noGrille;
-                afficheGrille(grille);
+                if (strcmp(nomGrille, "") != 0){
+                    afficheGrille(grille);
+                } else {
+                    printf("ERREUR : aucune grille chargée\n");
+                }
                 break;
             case '5' :  // saisie nb pas 
                 printf("Saisissez le nombre de pas a effectuer a chaque itération : ");
